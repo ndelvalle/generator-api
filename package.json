@@ -1,5 +1,5 @@
 {
-  "name": "rest-api-generator",
+  "name": "generator-api",
   "version": "0.1.0",
   "description": "Yeoman generator for creating RESTful NodeJS APIs, using ES6, Mongoose and Express",
   "main": "index.js",
@@ -10,7 +10,8 @@
   "license": "MIT",
   "keywords": [
     "yeoman-generator",
-    "rest-api-generator",
+    "generator-api",
+    "api",
     "mongoose",
     "mongo",
     "express"
@@ -19,13 +20,22 @@
     "generators/app"
   ],
   "dependencies": {
+    "fs": "0.0.2",
+    "yeoman-generator": "^0.23.4",
+    "yosay": "^1.2.0"
+  },
+  "devDependencies": {
     "eslint": "^2.9.0",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.7.0",
     "eslint-plugin-jsx-a11y": "^1.2.0",
-    "eslint-plugin-react": "^5.1.1",
-    "fs": "0.0.2",
-    "yeoman-generator": "^0.20.2",
-    "yosay": "^1.2.0"
+    "eslint-plugin-react": "^5.1.1"
+  },
+  "bugs": {
+    "url": "https://github.com/ndelvalle/generator-api/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ndelvalle/generator-api.git"
   }
 }
