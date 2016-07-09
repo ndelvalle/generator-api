@@ -19,6 +19,7 @@
     "no-unused-vars": [2, { "vars": "all", "args": "none" }],
     "max-len": 1,
     "padded-blocks": 0,
-    "no-console": 0
+    "no-console": 0,
+    "no-confusing-arrow": [0, {"allowParens": false}]
   }
 }

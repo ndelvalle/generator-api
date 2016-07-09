@@ -1,8 +1,38 @@
 const path       = require('path');
 const yosay      = require('yosay');
 const generators = require('yeoman-generator');
-const toCase     = require('../../helpers/to-case');
 
+
+const toCase = (str, strCase) => {
+  str = str.replace(/[^\w\d_-]/, '');
+  if (strCase === 'kebab-case') {
+    return str
+      .replace(/([\w\d])[_ ]([\w\d])/g, (_, m1, m2) => `${m1}-${m2}`)
+      .replace(
+        /([\w\d])?([A-Z])/g,
+        (_, m1, m2) => m1 ? `${m1}-${m2.toLowerCase()}` : m2.toLowerCase()
+      );
+  }
+  if (strCase === 'camelCase') {
+    return str.replace(/([\w\d])[-_ ]([\w\d])/g, (_, m1, m2) => m1 + m2.toUpperCase());
+  }
+  if (strCase === 'ClassCase') {
+    str = str.replace(/([\w\d])[-_ ]([\w\d])/g, (_, m1, m2) => m1 + m2.toUpperCase());
+    return str.slice(0, 1).toUpperCase() + str.slice(1);
+  }
+  throw new Error(`${strCase} is an invalid string case`);
+};
+
+const routerGen = (businessModels) => businessModels.map(bm => {
+  const kebabCase = toCase(bm, 'kebab-case');
+  return `router.route('/${kebabCase}')\n` +
+         `  .get(controllers.${bm}.find.bind(controllers.${bm}))\n` +
+         `  .post(controllers.${bm}.create.bind(controllers.${bm}));\n\n` +
+         `router.route('/${kebabCase}/:id')\n` +
+         `  .put(controllers.${bm}.update.bind(controllers.${bm}))\n` +
+         `  .get(controllers.${bm}.findOne.bind(controllers.${bm}))\n` +
+         `  .delete(controllers.${bm}.remove.bind(controllers.${bm}));\n`;
+}).join('\n\n');
 
 const serverGenerator = generators.Base.extend({
   prompting: {
@@ -15,7 +45,7 @@ const serverGenerator = generators.Base.extend({
     },
 
     ask() {
-      const done = this.async();
+      // const done = this.async();
       return this.prompt([{
         name    : 'serverName',
         type    : 'input',
@@ -44,38 +74,24 @@ const serverGenerator = generators.Base.extend({
         name    : 'businessModels',
         type    : 'input',
         message : 'Business models: (singular and comma separated)',
-        default : 'user'
+        default : 'user, pet'
       }, {
         name    : 'databaseName',
         type    : 'input',
         message : 'what should the database be named?',
         default : (answers) => toCase(answers.serverName, 'kebab-case')
-      }], (answers) => {
-
-        this.serverName        = toCase(answers.serverName, 'kebab-case').toLowerCase();
+      }]).then(answers => {
+        this.serverName        = toCase(answers.serverName, 'kebab-case');
         this.serverDescription = answers.serverDescription;
         this.serverVersion     = answers.serverVersion;
         this.authorName        = answers.authorName;
         this.authorEmail       = answers.authorEmail;
         this.databaseName      = answers.databaseName;
         this.businessModels    = answers.businessModels
-                                  .toLowerCase()
                                   .split(',')
-                                  .map(bm => bm.trim());
-
-        this.routesImport = this.businessModels.map(bm => {
-          const kebabCase = toCase(bm, 'kebab-case');
-          const route = `router.route('/${kebabCase}')\n` +
-                        `  .get(controllers.${bm}.find.bind(controllers.${bm}))\n` +
-                        `  .post(controllers.${bm}.create.bind(controllers.${bm}));\n\n` +
-                        `router.route('/${kebabCase}/:id')\n` +
-                        `  .put(controllers.${bm}.update.bind(controllers.${bm}))\n` +
-                        `  .get(controllers.${bm}.findOne.bind(controllers.${bm}))\n` +
-                        `  .delete(controllers.${bm}.remove.bind(controllers.${bm}));\n`;
-          return route;
-        }).join('\n\n');
-
-        done(null);
+                                  .map(bm => bm.trim())
+                                  .map(bm => toCase(bm, 'camelCase'));
+        this.routesImport      = routerGen(this.businessModels);
       });
     }
   },
