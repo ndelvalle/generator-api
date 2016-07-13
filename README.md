@@ -15,7 +15,7 @@ Yeoman generator for creating RESTful NodeJS APIs, using ES6, Mongoose and Expre
 - Make sure you have [yeoman](https://github.com/yeoman/yo) installed on your machine:
     `npm install -g yo`
 - Install the generator **globally**: `npm install -g generator-api`
-- Run: `yo generator-api`, or `yo` and choose `Api` option
+- Run: `yo api`, or `yo` and choose `Api` option
 
 ## Running the generated project
 - Run: `mongod` to start the local mongodb instance. If you don't have mongodb installed locally, visit [their webpage](https://docs.mongodb.com/manual/installation/)
