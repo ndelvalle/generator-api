@@ -129,21 +129,21 @@ const serverGenerator = generators.Base.extend({
 
     gitignore() {
       this.fs.copy(
-        this.templatePath('.gitignore'),
+        this.templatePath('gitignore'),
         this.destinationPath('.gitignore')
       );
     },
 
     eslintrc() {
       this.fs.copy(
-        this.templatePath('.eslintrc.json'),
+        this.templatePath('eslintrc.json'),
         this.destinationPath('.eslintrc.json')
       );
     },
 
     eslintignore() {
       this.fs.copy(
-        this.templatePath('.eslintignore'),
+        this.templatePath('eslintignore'),
         this.destinationPath('.eslintignore')
       );
     },
