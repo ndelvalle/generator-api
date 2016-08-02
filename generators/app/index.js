@@ -26,12 +26,12 @@ const toCase = (str, strCase) => {
 const routerGen = (businessModels) => businessModels.map(bm => {
   const kebabCase = toCase(bm, 'kebab-case');
   return `router.route('/${kebabCase}')\n` +
-         `  .get(controllers.${bm}.find.bind(controllers.${bm}))\n` +
-         `  .post(controllers.${bm}.create.bind(controllers.${bm}));\n\n` +
+         `  .get((...args) => controllers.${bm}.find(...args))\n` +
+         `  .post((...args) => controllers.${bm}.create(...args));\n\n` +
          `router.route('/${kebabCase}/:id')\n` +
-         `  .put(controllers.${bm}.update.bind(controllers.${bm}))\n` +
-         `  .get(controllers.${bm}.findOne.bind(controllers.${bm}))\n` +
-         `  .delete(controllers.${bm}.remove.bind(controllers.${bm}));\n`;
+         `  .put((...args) => controllers.${bm}.update(...args))\n` +
+         `  .get((...args) => controllers.${bm}.findOne(...args))\n` +
+         `  .delete((...args) => controllers.${bm}.remove(...args));\n`;
 }).join('\n\n');
 
 const serverGenerator = generators.Base.extend({
