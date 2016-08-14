@@ -34,7 +34,7 @@ class Controller {
   update(req, res, next) {
     this.model.update(req.params.id, req.body)
     .then(doc => {
-      if (!doc) res.status(404).send();
+      if (!doc) { return res.status(404).send(); }
       return res.status(200).json(doc);
     })
     .catch(err => next(err));
@@ -44,7 +44,7 @@ class Controller {
     this.model.remove(req.params.id)
     .then(doc => {
       if (!doc) { return res.status(404).end(); }
-      return res.sendStatus(204);
+      return res.status(204).end();
     })
     .catch(err => next(err));
   }
