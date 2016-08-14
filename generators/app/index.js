@@ -30,7 +30,7 @@ const routerGen = (businessModels) => businessModels.map(bm => {
          `  .post((...args) => controllers.${bm}.create(...args));\n\n` +
          `router.route('/${kebabCase}/:id')\n` +
          `  .put((...args) => controllers.${bm}.update(...args))\n` +
-         `  .get((...args) => controllers.${bm}.findOne(...args))\n` +
+         `  .get((...args) => controllers.${bm}.findById(...args))\n` +
          `  .delete((...args) => controllers.${bm}.remove(...args));\n`;
 }).join('\n\n');
 
