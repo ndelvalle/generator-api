@@ -8,7 +8,6 @@
     "no-param-reassign": 0,
     "func-names": 0,
     "space-before-function-paren": [2, "never"],
-    "key-spacing": [2, { "align": "colon" }],
     "comma-dangle": [2, "never"],
     "no-shadow": 0,
     "guard-for-in": 0,
@@ -20,6 +19,10 @@
     "max-len": 1,
     "padded-blocks": 0,
     "no-console": 0,
-    "no-confusing-arrow": [0, {"allowParens": false}]
+    "no-continue": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/newline-after-import": 0,
+    "no-mixed-operators": 0,
+    "no-confusing-arrow": 0
   }
 }
