@@ -8,27 +8,25 @@
     "start": "node index.js"
   },
   "engines": {
-    "node": ">=6.3.0"
+    "node": ">=6"
   },
   "author": "<%= authorName %> <<%= authorEmail %>>",
   "dependencies": {
     "bluebird": "^3.4.1",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "helmet": "^2.1.1",
-    "lodash": "^4.13.1",
-    "milieu": "^1.2.0",
-    "mongoose": "^4.5.3",
+    "helmet": "^2.1.2",
+    "lodash": "^4.15.0",
+    "milieu": "^1.4.0",
+    "mongoose": "^4.5.9",
     "morgan": "^1.7.0"
   },
   "devDependencies": {
-    "eslint": "^2.9.0",
-    "eslint-config-airbnb": "^9.0.1",
-    "eslint-config-angular": "^0.5.0",
-    "eslint-plugin-angular": "^1.0.1",
-    "eslint-plugin-import": "^1.7.0",
-    "eslint-plugin-jsx-a11y": "^1.2.0",
-    "eslint-plugin-react": "^5.0.1",
+    "eslint": "^3.2.2",
+    "eslint-config-airbnb": "^10.0.0",
+    "eslint-plugin-import": "^1.12.0",
+    "eslint-plugin-jsx-a11y": "^2.0.1",
+    "eslint-plugin-react": "^6.0.0",
     "nodemon": "^1.9.2"
   }
 }

@@ -8,7 +8,6 @@
     "no-param-reassign": 0,
     "func-names": 0,
     "space-before-function-paren": [2, "never"],
-    "key-spacing": [2, { "align": "colon" }],
     "comma-dangle": [2, "never"],
     "no-shadow": 0,
     "guard-for-in": 0,
@@ -19,6 +18,10 @@
     "no-unused-vars": [2, { "vars": "all", "args": "none" }],
     "max-len": 1,
     "padded-blocks": 0,
-    "no-console": 0
+    "no-console": 0,
+    "no-continue": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/newline-after-import": 0,
+    "no-mixed-operators": 0
   }
 }
