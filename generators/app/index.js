@@ -1,37 +1,18 @@
 const path       = require('path');
 const yosay      = require('yosay');
+const to         = require('to-case');
 const generators = require('yeoman-generator');
 
 
-const toCase = (str, strCase) => {
-  str = str.replace(/[^\w\d_-]/, '');
-  if (strCase === 'kebab-case') {
-    return str
-      .replace(/([\w\d])[_ ]([\w\d])/g, (_, m1, m2) => `${m1}-${m2}`)
-      .replace(
-        /([\w\d])?([A-Z])/g,
-        (_, m1, m2) => m1 ? `${m1}-${m2.toLowerCase()}` : m2.toLowerCase()
-      );
-  }
-  if (strCase === 'camelCase') {
-    return str.replace(/([\w\d])[-_ ]([\w\d])/g, (_, m1, m2) => m1 + m2.toUpperCase());
-  }
-  if (strCase === 'ClassCase') {
-    str = str.replace(/([\w\d])[-_ ]([\w\d])/g, (_, m1, m2) => m1 + m2.toUpperCase());
-    return str.slice(0, 1).toUpperCase() + str.slice(1);
-  }
-  throw new Error(`${strCase} is an invalid string case`);
-};
-
 const routerGen = (businessModels) => businessModels.map(bm => {
-  const kebabCase = toCase(bm, 'kebab-case');
-  return `router.route('/${kebabCase}')\n` +
-         `  .get((...args) => controllers.${bm}.find(...args))\n` +
-         `  .post((...args) => controllers.${bm}.create(...args));\n\n` +
-         `router.route('/${kebabCase}/:id')\n` +
-         `  .put((...args) => controllers.${bm}.update(...args))\n` +
-         `  .get((...args) => controllers.${bm}.findById(...args))\n` +
-         `  .delete((...args) => controllers.${bm}.remove(...args));\n`;
+  const slug = to.slug(bm);
+  return `router.route('/${slug}')\n` +
+    `  .get((...args) => controllers.${bm}.find(...args))\n` +
+    `  .post((...args) => controllers.${bm}.create(...args));\n\n` +
+    `router.route('/${slug}/:id')\n` +
+    `  .put((...args) => controllers.${bm}.update(...args))\n` +
+    `  .get((...args) => controllers.${bm}.findById(...args))\n` +
+    `  .delete((...args) => controllers.${bm}.remove(...args));\n`;
 }).join('\n\n');
 
 const serverGenerator = generators.Base.extend({
@@ -45,7 +26,6 @@ const serverGenerator = generators.Base.extend({
     },
 
     ask() {
-      // const done = this.async();
       return this.prompt([{
         name    : 'serverName',
         type    : 'input',
@@ -79,9 +59,9 @@ const serverGenerator = generators.Base.extend({
         name    : 'databaseName',
         type    : 'input',
         message : 'what should the database be named?',
-        default : (answers) => toCase(answers.serverName, 'kebab-case')
+        default : (answers) => to.slug(answers.serverName)
       }]).then(answers => {
-        this.serverName        = toCase(answers.serverName, 'kebab-case');
+        this.serverName        = to.slug(answers.serverName);
         this.serverDescription = answers.serverDescription;
         this.serverVersion     = answers.serverVersion;
         this.authorName        = answers.authorName;
@@ -90,7 +70,7 @@ const serverGenerator = generators.Base.extend({
         this.businessModels    = answers.businessModels
                                   .split(',')
                                   .map(bm => bm.trim())
-                                  .map(bm => toCase(bm, 'camelCase'));
+                                  .map(bm => to.camel(bm));
         this.routesImport      = routerGen(this.businessModels);
       });
     }
@@ -101,8 +81,7 @@ const serverGenerator = generators.Base.extend({
     config() {
       this.fs.copyTpl(
         this.templatePath('config/config.js'),
-        this.destinationPath('config/config.js'),
-        {
+        this.destinationPath('config/config.js'), {
           serverName   : this.serverName,
           databaseName : this.databaseName
         }
@@ -119,8 +98,7 @@ const serverGenerator = generators.Base.extend({
     routes() {
       this.fs.copyTpl(
         this.templatePath('routes.js'),
-        this.destinationPath('routes.js'),
-        {
+        this.destinationPath('routes.js'), {
           serverName  : this.serverName,
           routesImport: this.routesImport
         }
@@ -151,8 +129,7 @@ const serverGenerator = generators.Base.extend({
     packageJSON() {
       this.fs.copyTpl(
         this.templatePath('package.json'),
-        this.destinationPath('package.json'),
-        {
+        this.destinationPath('package.json'), {
           serverName       : this.serverName,
           serverDescription: this.serverDescription,
           serverVersion    : this.serverVersion,
@@ -199,9 +176,8 @@ const serverGenerator = generators.Base.extend({
       this.businessModels.forEach(bm => {
         this.fs.copyTpl(
           this.templatePath('controllers/template.js'),
-          this.destinationPath(`controllers/${bm}-controller.js`),
-          {
-            businessModel: toCase(bm, 'ClassCase'),
+          this.destinationPath(`controllers/${bm}-controller.js`), {
+            businessModel: to.capital(bm),
             modelPath    : bm
           }
         );
@@ -212,9 +188,8 @@ const serverGenerator = generators.Base.extend({
       this.businessModels.forEach(bm => {
         this.fs.copyTpl(
           this.templatePath('models/template.js'),
-          this.destinationPath(`models/${bm}-model.js`),
-          {
-            businessModel: toCase(bm, 'ClassCase'),
+          this.destinationPath(`models/${bm}-model.js`), {
+            businessModel: to.capital(bm),
             schemaPath   : bm
           }
         );
@@ -225,9 +200,8 @@ const serverGenerator = generators.Base.extend({
       this.businessModels.forEach(bm => {
         this.fs.copyTpl(
           this.templatePath('schemas/template.js'),
-          this.destinationPath(`schemas/${bm}-schema.js`),
-          {
-            instanceName: toCase(bm, 'ClassCase')
+          this.destinationPath(`schemas/${bm}-schema.js`), {
+            instanceName: to.capital(bm)
           }
         );
       });
