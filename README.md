@@ -1,9 +1,11 @@
 # generator-api
 
+[![CircleCI](https://circleci.com/gh/ndelvalle/generator-api.svg?style=svg)](https://circleci.com/gh/ndelvalle/generator-api)
 [![bitHound Overall Score](https://www.bithound.io/github/ndelvalle/generator-api/badges/score.svg)](https://www.bithound.io/github/ndelvalle/generator-api)
 [![bitHound Dependencies](https://www.bithound.io/github/ndelvalle/generator-api/badges/dependencies.svg)](https://www.bithound.io/github/ndelvalle/generator-api/master/dependencies/npm)
 [![bitHound Dev Dependencies](https://www.bithound.io/github/ndelvalle/generator-api/badges/devDependencies.svg)](https://www.bithound.io/github/ndelvalle/generator-api/master/dependencies/npm)
 [![bitHound Code](https://www.bithound.io/github/ndelvalle/generator-api/badges/code.svg)](https://www.bithound.io/github/ndelvalle/generator-api)
+
 
 Yeoman generator for creating RESTful NodeJS APIs, using ES6, Mongoose and Express. The fastest way to get your project up and running using an awesome stack.
 
@@ -27,7 +29,7 @@ Make sure you have node version `>= 6.3` because this project uses es6 features 
 * Add to README how is the project's architecture, and tips on how to scale from the generated project
 * Give the generator more startup options
 *  Create more generator templates to add new controllers / models / schemas once the project was initialized
-* Implement testings, in both the generator and generated projects
+* Implement testing in the generated project
 
 ## Contributing
 Contributors are welcome, please fork and send pull requests! If you have any ideas on how to improve this project please submit an issue.
