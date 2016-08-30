@@ -9,7 +9,7 @@
 
 Yeoman generator for creating RESTful NodeJS APIs, using ES6, Mongoose and Express. The fastest way to get your project up and running using an awesome stack.
 
-![generator-angular-fullstack](http://yeoman.io/static/illustration-home-inverted.91b07808be.png)
+![generator](http://yeoman.io/static/illustration-home-inverted.91b07808be.png)
 
 
 ## Getting started
