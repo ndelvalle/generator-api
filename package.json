@@ -1,6 +1,6 @@
 {
   "name": "generator-api",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Yeoman generator for creating RESTful NodeJS APIs, using ES6, Mongoose and Express",
   "main": "index.js",
   "scripts": {

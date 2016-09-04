@@ -4,7 +4,7 @@ const to         = require('to-case');
 const generators = require('yeoman-generator');
 
 
-const routerGen = (businessModels) => businessModels.map(bm => {
+const routerGen = (models) => models.map(bm => {
   const slug = to.slug(bm);
   return `router.route('/${slug}')\n` +
     `  .get((...args) => controllers.${bm}.find(...args))\n` +
@@ -17,7 +17,6 @@ const routerGen = (businessModels) => businessModels.map(bm => {
 
 const serverGenerator = generators.Base.extend({
   prompting: {
-
     welcome() {
       this.log(yosay(
         '\'Allo \'allo! Out of the box I include Express and Mongoose, as well as a' +
@@ -30,6 +29,7 @@ const serverGenerator = generators.Base.extend({
         name    : 'serverName',
         type    : 'input',
         message : 'Server name:',
+        filter  : (answer) => to.slug(answer),
         default : path.basename(this.destinationPath())
       }, {
         name    : 'serverDescription',
@@ -51,9 +51,10 @@ const serverGenerator = generators.Base.extend({
         message : 'Author email:',
         store   : true
       }, {
-        name    : 'businessModels',
+        name    : 'models',
         type    : 'input',
-        message : 'Business models: (singular and comma separated)',
+        message : 'Models: (singular and comma separated)',
+        filter  : (answer) => answer.split(' ').map(m => to.camel(m.trim())),
         default : 'user, pet'
       }, {
         name    : 'databaseName',
@@ -61,23 +62,19 @@ const serverGenerator = generators.Base.extend({
         message : 'what should the database be named?',
         default : (answers) => to.slug(answers.serverName)
       }]).then(answers => {
-        this.serverName        = to.slug(answers.serverName);
+        this.serverName        = answers.serverName;
         this.serverDescription = answers.serverDescription;
         this.serverVersion     = answers.serverVersion;
         this.authorName        = answers.authorName;
         this.authorEmail       = answers.authorEmail;
         this.databaseName      = answers.databaseName;
-        this.businessModels    = answers.businessModels
-                                  .split(',')
-                                  .map(bm => bm.trim())
-                                  .map(bm => to.camel(bm));
-        this.routesImport      = routerGen(this.businessModels);
+        this.models            = answers.models;
+        this.routesImport      = routerGen(this.models);
       });
     }
   },
 
   writing: {
-
     config() {
       this.fs.copyTpl(
         this.templatePath('config/config.js'),
@@ -173,11 +170,11 @@ const serverGenerator = generators.Base.extend({
         this.destinationPath('controllers/index.js')
       );
 
-      this.businessModels.forEach(bm => {
+      this.models.forEach(bm => {
         this.fs.copyTpl(
           this.templatePath('controllers/template.js'),
           this.destinationPath(`controllers/${bm}-controller.js`), {
-            businessModel: to.capital(bm),
+            businessModel: to.pascal(bm),
             modelPath    : bm
           }
         );
@@ -185,11 +182,11 @@ const serverGenerator = generators.Base.extend({
     },
 
     models() {
-      this.businessModels.forEach(bm => {
+      this.models.forEach(bm => {
         this.fs.copyTpl(
           this.templatePath('models/template.js'),
           this.destinationPath(`models/${bm}-model.js`), {
-            businessModel: to.capital(bm),
+            businessModel: to.pascal(bm),
             schemaPath   : bm
           }
         );
@@ -197,11 +194,11 @@ const serverGenerator = generators.Base.extend({
     },
 
     schemas() {
-      this.businessModels.forEach(bm => {
+      this.models.forEach(bm => {
         this.fs.copyTpl(
           this.templatePath('schemas/template.js'),
           this.destinationPath(`schemas/${bm}-schema.js`), {
-            instanceName: to.capital(bm)
+            instanceName: to.pascal(bm)
           }
         );
       });

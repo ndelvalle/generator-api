@@ -15,7 +15,7 @@ describe('generator-api', () => {
         serverVersion    : 'serverVersion',
         authorName       : 'authorName',
         authorEmail      : 'authorEmail',
-        businessModels   : 'foo, bar',
+        models           : ['foo', 'bar'],
         databaseName     : 'databaseName'
       })
       .toPromise());
