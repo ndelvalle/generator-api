@@ -33,7 +33,6 @@ The idea is to be able to scale having a simple architecture. Assuming we use `u
 ├───routes.js
 ├───package.json
 ├───config.js
-├───config.js
 └───lib/
 |   ├───controller.js
 |   ├───facade.js
@@ -57,7 +56,6 @@ HTTP layer, in this instance you can manage express request, response and next. 
 This layer works a simplified interface of mongoose and as Business Model layer, in this instance you can manage your business logic. For example, if you want to create a pet before creating a user, because you'll end up adding that pet to the person, this is the place.
 
 In `lib/facade` you have the basic support for RESTful methods. Because this class is extending from there, you got that solved. You can overwrite extended methods or create custom ones here. Also you can support more mongoose functionality like `skip`, `sort` etc.
-
 
 
 ## To do
