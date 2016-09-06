@@ -25,7 +25,7 @@ Make sure you have node version `>= 6.3` because this project uses native suppor
 - Run: `mongod` to start the local mongodb instance. If you don't have mongodb installed locally, visit [their webpage](https://docs.mongodb.com/manual/installation/)
 - Run: `npm run dev` to start the local server with nodemon at `localhost:8080`
 
-## Project architecture
+## Architecture
 The idea is to be able to scale having a simple architecture. Assuming we use `user` and `pet` as models the generated project would look like this:
 
 ```
