@@ -4,16 +4,14 @@ const to         = require('to-case');
 const generators = require('yeoman-generator');
 
 
-const routerGen = (models) => models.map(bm => {
-  const slug = to.slug(bm);
-  return `router.route('/${slug}')\n` +
-    `  .get((...args) => controllers.${bm}.find(...args))\n` +
-    `  .post((...args) => controllers.${bm}.create(...args));\n\n` +
-    `router.route('/${slug}/:id')\n` +
-    `  .put((...args) => controllers.${bm}.update(...args))\n` +
-    `  .get((...args) => controllers.${bm}.findById(...args))\n` +
-    `  .delete((...args) => controllers.${bm}.remove(...args));\n`;
-}).join('\n\n');
+const genModelNames = (model) => {
+  const modelNames = {
+    slugName  : to.slug(model),
+    pascalName: to.pascal(model),
+    camelName : to.camel(model)
+  };
+  return modelNames;
+};
 
 const serverGenerator = generators.Base.extend({
   prompting: {
@@ -54,7 +52,7 @@ const serverGenerator = generators.Base.extend({
         name    : 'models',
         type    : 'input',
         message : 'Models: (singular and comma separated)',
-        filter  : (answer) => answer.split(' ').map(m => to.camel(m.trim())),
+        filter  : (answer) => answer.split(','),
         default : 'user, pet'
       }, {
         name    : 'databaseName',
@@ -68,8 +66,7 @@ const serverGenerator = generators.Base.extend({
         this.authorName        = answers.authorName;
         this.authorEmail       = answers.authorEmail;
         this.databaseName      = answers.databaseName;
-        this.models            = answers.models;
-        this.routesImport      = routerGen(this.models);
+        this.models            = answers.models.map(genModelNames);
       });
     }
   },
@@ -77,8 +74,8 @@ const serverGenerator = generators.Base.extend({
   writing: {
     config() {
       this.fs.copyTpl(
-        this.templatePath('config/config.js'),
-        this.destinationPath('config/config.js'), {
+        this.templatePath('config.js'),
+        this.destinationPath('config.js'), {
           serverName   : this.serverName,
           databaseName : this.databaseName
         }
@@ -96,8 +93,8 @@ const serverGenerator = generators.Base.extend({
       this.fs.copyTpl(
         this.templatePath('routes.js'),
         this.destinationPath('routes.js'), {
-          serverName  : this.serverName,
-          routesImport: this.routesImport
+          serverName: this.serverName,
+          models    : this.models
         }
       );
     },
@@ -138,67 +135,45 @@ const serverGenerator = generators.Base.extend({
 
     controller() {
       this.fs.copy(
-        this.templatePath('libraries/controller.js'),
-        this.destinationPath('libraries/controller.js')
+        this.templatePath('lib/controller.js'),
+        this.destinationPath('lib/controller.js')
+      );
+    },
+
+    facade() {
+      this.fs.copy(
+        this.templatePath('lib/facade.js'),
+        this.destinationPath('lib/facade.js')
       );
     },
 
     model() {
-      this.fs.copy(
-        this.templatePath('libraries/model.js'),
-        this.destinationPath('libraries/model.js')
-      );
-    },
-
-    promisifyAll() {
-      this.fs.copy(
-        this.templatePath('libraries/promisify-all.js'),
-        this.destinationPath('libraries/promisify-all.js')
-      );
-    },
-
-    requireAll() {
-      this.fs.copy(
-        this.templatePath('libraries/require-all.js'),
-        this.destinationPath('libraries/require-all.js')
-      );
-    },
-
-    controllers() {
-      this.fs.copy(
-        this.templatePath('controllers/index.js'),
-        this.destinationPath('controllers/index.js')
-      );
-
-      this.models.forEach(bm => {
+      this.models.forEach(model => {
         this.fs.copyTpl(
-          this.templatePath('controllers/template.js'),
-          this.destinationPath(`controllers/${bm}-controller.js`), {
-            businessModel: to.pascal(bm),
-            modelPath    : bm
+          this.templatePath('model/controller.js'),
+          this.destinationPath(`model/${model.slugName}/${model.slugName}-controller.js`), {
+            model
           }
         );
-      });
-    },
 
-    models() {
-      this.models.forEach(bm => {
         this.fs.copyTpl(
-          this.templatePath('models/template.js'),
-          this.destinationPath(`models/${bm}-model.js`), {
-            businessModel: to.pascal(bm),
-            schemaPath   : bm
+          this.templatePath('model/facade.js'),
+          this.destinationPath(`model/${model.slugName}/${model.slugName}-facade.js`), {
+            model
           }
         );
-      });
-    },
 
-    schemas() {
-      this.models.forEach(bm => {
         this.fs.copyTpl(
-          this.templatePath('schemas/template.js'),
-          this.destinationPath(`schemas/${bm}-schema.js`), {
-            instanceName: to.pascal(bm)
+          this.templatePath('model/router.js'),
+          this.destinationPath(`model/${model.slugName}/${model.slugName}-router.js`), {
+            model
+          }
+        );
+
+        this.fs.copyTpl(
+          this.templatePath('model/schema.js'),
+          this.destinationPath(`model/${model.slugName}/${model.slugName}-schema.js`), {
+            model
           }
         );
       });
