@@ -1,13 +1,18 @@
-const controllers = require('./controllers');
-
 const Router = require('express').Router;
 const router = new Router();
 
+<%_ models.forEach(function(model){ _%>
+const <%= model.camelName %>  = require('./model/<%= model.slugName %>/<%= model.slugName %>-router');
+<%_ }); _%>
 
-router.get('/', (req, res) => {
+
+router.route('/').get((req, res) => {
   res.json({ message: 'Welcome to <%= serverName %> API!' });
 });
 
-<%- routesImport %>
+<%_ models.forEach(function(model){ _%>
+router.use('/<%= model.slugName %>', <%= model.camelName %>);
+<%_ }); _%>
+
 
 module.exports = router;

@@ -15,7 +15,7 @@ describe('generator-api', () => {
         serverVersion    : 'serverVersion',
         authorName       : 'authorName',
         authorEmail      : 'authorEmail',
-        models           : ['foo', 'bar'],
+        models           : ['foo', 'bar', 'BazFoo'],
         databaseName     : 'databaseName'
       })
       .toPromise());
@@ -44,63 +44,68 @@ describe('generator-api', () => {
       assert.file(['.gitignore']);
     });
 
-    describe('config', () => {
-      it('generates a config/config.js file', () => {
-        assert.file(['config/config.js']);
-      });
-    });
-
-    describe('controllers', () => {
-      it('generates an controllers/index.js file', () => {
-        assert.file(['controllers/index.js']);
-      });
-
-      it('generates a controllers/foo-controller.js file', () => {
-        assert.file(['controllers/foo-controller.js']);
-      });
-
-      it('generates a controllers/bar-controller.js file', () => {
-        assert.file(['controllers/bar-controller.js']);
-      });
-    });
-
-    describe('libraries', () => {
-      it('generates a libraries/controller.js file', () => {
-        assert.file(['libraries/controller.js']);
-      });
-
-      it('generates a libraries/model.js file', () => {
-        assert.file(['libraries/model.js']);
-      });
-
-      it('generates a libraries/promisify-all.js file', () => {
-        assert.file(['libraries/promisify-all.js']);
-      });
-
-      it('generates a libraries/require-all.js file', () => {
-        assert.file(['libraries/require-all.js']);
-      });
+    it('generates a config.js file', () => {
+      assert.file(['config.js']);
     });
 
     describe('models', () => {
-      it('generates a models/foo-model.js file', () => {
-        assert.file(['models/foo-model.js']);
+      it('generates a folder for each model', () => {
+        assert.file([
+          'model/foo',
+          'model/bar',
+          'model/baz-foo'
+        ]);
       });
 
-      it('generates a models/bar-model.js file', () => {
-        assert.file(['models/bar-model.js']);
+      describe('controllers', () => {
+        it('generates a controller for each model', () => {
+          assert.file([
+            'model/foo/foo-controller.js',
+            'model/bar/bar-controller.js',
+            'model/baz-foo/baz-foo-controller.js'
+          ]);
+        });
+      });
+
+      describe('facades', () => {
+        it('generates a facade for each model', () => {
+          assert.file([
+            'model/foo/foo-facade.js',
+            'model/bar/bar-facade.js',
+            'model/baz-foo/baz-foo-facade.js'
+          ]);
+        });
+      });
+
+      describe('routes', () => {
+        it('generates a router for each model', () => {
+          assert.file([
+            'model/foo/foo-router.js',
+            'model/bar/bar-router.js',
+            'model/baz-foo/baz-foo-router.js'
+          ]);
+        });
+      });
+
+      describe('schemas', () => {
+        it('generates a schema for each model', () => {
+          assert.file([
+            'model/foo/foo-schema.js',
+            'model/bar/bar-schema.js',
+            'model/baz-foo/baz-foo-schema.js'
+          ]);
+        });
       });
     });
 
-    describe('schemas', () => {
-      it('generates a schemas/foo-schema.js file', () => {
-        assert.file(['schemas/foo-schema.js']);
+    describe('libs', () => {
+      it('generates a lib/controller.js file', () => {
+        assert.file(['lib/controller.js']);
       });
 
-      it('generates a schemas/bar-schema.js file', () => {
-        assert.file(['schemas/bar-schema.js']);
+      it('generates a lib/facade.js file', () => {
+        assert.file(['lib/facade.js']);
       });
     });
-
   });
 });

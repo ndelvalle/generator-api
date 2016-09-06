@@ -1,5 +1,4 @@
 class Controller {
-
   constructor(model) {
     this.model = model;
   }
@@ -32,7 +31,9 @@ class Controller {
   }
 
   update(req, res, next) {
-    this.model.update(req.params.id, req.body)
+    const conditions = { _id: req.params.id };
+
+    this.model.update(conditions, req.body)
     .then(doc => {
       if (!doc) { return res.status(404).end(); }
       return res.status(200).json(doc);
