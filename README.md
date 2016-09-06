@@ -20,15 +20,48 @@ Yeoman generator for creating RESTful NodeJS APIs, using ES6, Mongoose and Expre
 - Run: `yo api`, or `yo` and choose `Api` option
 
 ## Running the generated project
-Make sure you have node version `>= 6.3` because this project uses es6 features without compiling with babel.
+Make sure you have node version `>= 6.3` because this project uses native supported ES6 features.
 
 - Run: `mongod` to start the local mongodb instance. If you don't have mongodb installed locally, visit [their webpage](https://docs.mongodb.com/manual/installation/)
 - Run: `npm run dev` to start the local server with nodemon at `localhost:8080`
 
+## Project architecture
+The idea is to be able to scale having a simple architecture. Assuming we use `user` and `pet` as models the generated project would look like this:
+
+```
+├───index.js
+├───routes.js
+├───package.json
+├───config.js
+├───config.js
+└───lib/
+|   ├───controller.js
+|   ├───facade.js
+└───model/
+    ├───user/
+    │   └───user-controller.js
+    |   └───user-facade.js
+    |   └───user-router.js
+    |   └───user-schema.js
+    └───pet/
+        └───pet-controller.js
+        └───pet-facade.js
+        └───pet-router.js
+        └───pet-schema.js
+```
+
+#### Controller:
+HTTP layer, in this instance you can manage express request, response and next. In `lib/controller` are the basic RESTful methods `find`, `findOne`, `findById`, `create`, `update` and `remove`. Because this class is extending from there, you got that solved. You can overwrite extended methods or create custom ones here.
+
+#### Facade:
+This layer works a simplified interface of mongoose and as Business Model layer, in this instance you can manage your business logic. For example, if you want to create a pet before creating a user, because you'll end up adding that pet to the person, this is the place.
+
+In `lib/facade` you have the basic support for RESTful methods. Because this class is extending from there, you got that solved. You can overwrite extended methods or create custom ones here. Also you can support more mongoose functionality like `skip`, `sort` etc.
+
+
+
 ## To do
-* Add to README how is the project's architecture, and tips on how to scale from the generated project
-* Give the generator more startup options
-*  Create more generator templates to add new controllers / models / schemas once the project was initialized
+*  Create more generator templates to add new models once the project was initialized
 * Implement testing in the generated project
 
 ## Contributing
