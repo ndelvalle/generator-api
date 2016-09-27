@@ -2,7 +2,7 @@
   "name": "<%= serverName %>",
   "version": "<%= serverVersion %>",
   "description": "<%= serverDescription %>",
-  "main": "src/server.js",
+  "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js"
