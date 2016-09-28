@@ -3,10 +3,10 @@ const milieu = require('milieu');
 const config = milieu('<%= serverName %>', {
   environment: 'dev',
   server: {
-    port: 8080
+    port: '${PORT}' || 8080
   },
   mongo: {
-    url: 'mongodb://localhost/<%= databaseName %>'
+    url: '${MONGO_DB_URI}' || 'mongodb://localhost/<%= databaseName %>'
   }
 });
 
