@@ -8,6 +8,9 @@
     "eslint": "eslint . --ext .js"
   },
   "author": "ndelvalle <nicolas.delvalle@gmail.com>",
+  "contributors":[
+    "Christian Gill <gillchristiang@gmail.com> (https://gillchristian.xyz/)"
+  ],
   "license": "MIT",
   "keywords": [
     "yeoman-generator",
