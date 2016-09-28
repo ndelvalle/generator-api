@@ -1,14 +1,11 @@
-const milieu = require('milieu');
-
-const config = milieu('<%= serverName %>', {
-  environment: 'dev',
+const config = {
+  environment: process.env.NODE_ENV || 'dev',
   server: {
-    port: '${PORT}' || 8080
+    port: process.env.PORT || 8080
   },
   mongo: {
-    url: '${MONGO_DB_URI}' || 'mongodb://localhost/<%= databaseName %>'
+    url: process.env.MONGO_DB_URI || 'mongodb://localhost/<%= databaseName %>'
   }
-});
-
+};
 
 module.exports = config;
