@@ -1,12 +1,13 @@
 /* eslint-disable max-len */
 /* global describe before it */
 
-const helpers = require('yeoman-test');
-const assert  = require('yeoman-assert');
-const path    = require('path');
+const helpers       = require('yeoman-test');
+const assert        = require('yeoman-assert');
+const path          = require('path');
+const includedFiles = require('./included-files-cases');
 
 describe('generator-api', () => {
-  describe('Run yeoman generator-api', () => {
+  describe('Run yeoman generator-api with no docker support', () => {
 
     before(() => helpers.run(path.join(__dirname, '../generators/app'))
       .withPrompts({
@@ -16,36 +17,29 @@ describe('generator-api', () => {
         authorName       : 'authorName',
         authorEmail      : 'authorEmail',
         models           : ['foo', 'bar', 'BazFoo'],
-        databaseName     : 'databaseName'
+        databaseName     : 'databaseName',
+        useDocker        : false
       })
       .toPromise());
 
-    it('generates an index.js file', () => {
-      assert.file(['index.js']);
+
+    includedFiles.forEach(fileCase => {
+      it(fileCase.desc, () => {
+        assert.file(fileCase.files);
+      });
     });
 
-    it('generates a router.js file', () => {
-      assert.file(['routes.js']);
-    });
+    const notIncludedFiles = [
+      {
+        desc : 'doest not generate docker files when useDocker = false',
+        files: ['Dockerfile', 'docker-compose.yml']
+      }
+    ];
 
-    it('generates a package.json file', () => {
-      assert.file(['package.json']);
-    });
-
-    it('generates a .eslintignore file', () => {
-      assert.file(['.eslintignore']);
-    });
-
-    it('generates a .eslintrc.json file', () => {
-      assert.file(['.eslintrc.json']);
-    });
-
-    it('generates a .gitignore file', () => {
-      assert.file(['.gitignore']);
-    });
-
-    it('generates a config.js file', () => {
-      assert.file(['config.js']);
+    notIncludedFiles.forEach(fileCase => {
+      it(fileCase.desc, () => {
+        assert.noFile(fileCase.files);
+      });
     });
 
     describe('models', () => {
@@ -106,6 +100,26 @@ describe('generator-api', () => {
       it('generates a lib/facade.js file', () => {
         assert.file(['lib/facade.js']);
       });
+    });
+  });
+
+  describe('Run yeoman generator-api with docker support', () => {
+
+    before(() => helpers.run(path.join(__dirname, '../generators/app'))
+      .withPrompts({
+        serverName       : 'serverName',
+        serverDescription: 'serverDescription',
+        serverVersion    : 'serverVersion',
+        authorName       : 'authorName',
+        authorEmail      : 'authorEmail',
+        models           : ['foo'],
+        databaseName     : 'databaseName',
+        useDocker        : true
+      })
+      .toPromise());
+
+    it('generates docker files when useDocker = true', () => {
+      assert.file('Dockerfile', 'docker-compose.yml');
     });
   });
 });

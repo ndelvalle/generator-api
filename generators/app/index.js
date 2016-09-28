@@ -59,6 +59,11 @@ const serverGenerator = generators.Base.extend({
         type    : 'input',
         message : 'what should the database be named?',
         default : (answers) => to.slug(answers.serverName)
+      }, {
+        name    : 'useDocker',
+        type    : 'confirm',
+        message : 'would you like to have Docker included in the app?',
+        default : true
       }]).then(answers => {
         this.serverName        = answers.serverName;
         this.serverDescription = answers.serverDescription;
@@ -67,6 +72,7 @@ const serverGenerator = generators.Base.extend({
         this.authorEmail       = answers.authorEmail;
         this.databaseName      = answers.databaseName;
         this.models            = answers.models.map(genModelNames);
+        this.useDocker         = answers.useDocker;
       });
     }
   },
@@ -177,6 +183,26 @@ const serverGenerator = generators.Base.extend({
           }
         );
       });
+    }
+  },
+
+  dockerfile() {
+    if (this.useDocker) {
+      this.fs.copy(
+        this.templatePath('Dockerfile'),
+        this.destinationPath('Dockerfile')
+      );
+    }
+  },
+
+  dockercompose() {
+    if (this.useDocker) {
+      this.fs.copyTpl(
+        this.templatePath('docker-compose.yml'),
+        this.destinationPath('docker-compose.yml'), {
+          databaseName: this.databaseName
+        }
+      );
     }
   },
 
