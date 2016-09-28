@@ -21,31 +21,22 @@ Yeoman generator for creating RESTful NodeJS APIs, using ES6, Mongoose and Expre
 
 ## Running the generated project
 
-If chose not to use Docker, make sure you have node version `>= 6.3` because this project uses native supported ES6 features.
+Make sure you have node version `>= 6.3` because this project uses native supported ES6 features.
 
-To start the local mongodb instance run in a separated terminal instance:
-
-```bash
-mongod
-```
+- Run: `mongod` to start the local mongodb in a separated terminal instance.
+- Run: `npm run dev` to run the app.
 
 NOTE: _If you don't have mongodb installed locally, visit [their webpage](https://docs.mongodb.com/manual/installation/)._
 
-Run the app with:
+Did you choose Docker support? :whale:
 
-```bash
-npm run dev
-```
+You only need [Docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install/) installed.
+
+- Run: `docker-compose up` to run the app. _You might need `sudo` for this one_.
+
+-------------------------------------------------------------------------------
 
 Now visit the app at `localhost:8080`.
-
-If you chose to have Docker :whale: support, you only need [Docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install/) installed.
-
-To run the app:
-
-```bash
-sudo docker-compose up
-```
 
 ## Architecture
 The idea is to be able to scale having a simple architecture. Assuming we use `user` and `pet` as models the generated project would look like this:
@@ -81,8 +72,9 @@ In `lib/facade` you have the basic support for RESTful methods. Because this cla
 
 
 ## To do
-*  Create more generator templates to add new models once the project was initialized
+* Create more generator templates to add new models once the project was initialized
 * Implement testing in the generated project
+* Improve Docker support for production environments
 
 ## Contributing
 Contributors are welcome, please fork and send pull requests! If you have any ideas on how to improve this project please submit an issue.
