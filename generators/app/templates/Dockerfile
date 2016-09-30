@@ -17,5 +17,3 @@ WORKDIR $APP_HOME
 COPY ./ $APP_HOME
 
 EXPOSE 8080
-
-CMD ["npm", "run", "dev"]

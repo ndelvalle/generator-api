@@ -21,6 +21,10 @@ Yeoman generator for creating RESTful NodeJS APIs, using ES6, Mongoose and Expre
 
 ## Running the generated project
 
+### Development
+
+The app will run at `localhost:8080`.
+
 Make sure you have node version `>= 6.3` because this project uses native supported ES6 features.
 
 - Run: `mongod` to start the local mongodb in a separated terminal instance.
@@ -28,15 +32,30 @@ Make sure you have node version `>= 6.3` because this project uses native suppor
 
 NOTE: _If you don't have mongodb installed locally, visit [their webpage](https://docs.mongodb.com/manual/installation/)._
 
-Did you choose Docker support? :whale:
+**Did you choose Docker support?** :whale:
 
-You only need [Docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install/) installed.
+You only need [Docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install/) installed, no mongodb, no node, no npm. :sunglasses:
 
 - Run: `docker-compose up` to run the app. _You might need `sudo` for this one_.
 
--------------------------------------------------------------------------------
+### production
 
-Now visit the app at `localhost:8080`.
+_you'll likely be consuming mongodb as a service, so make sure you set the env var to connect to it._
+
+Just run `npm start`.
+
+**Wait, you choose Docker right?** :whale:
+
+build the Docker container and run it:
+
+```bash
+sudo docker build -t <image-name> .
+sudo docker run \
+  -p <host-port>:8080 \
+  -d <image-name> \
+  -e MONGO_DB_URI=mongodb://<username>:<password>@<host>:<port> \
+  npm run start
+```
 
 ## Architecture
 The idea is to be able to scale having a simple architecture. Assuming we use `user` and `pet` as models the generated project would look like this:
@@ -74,7 +93,6 @@ In `lib/facade` you have the basic support for RESTful methods. Because this cla
 ## To do
 * Create more generator templates to add new models once the project was initialized
 * Implement testing in the generated project
-* Improve Docker support for production environments
 
 ## Contributing
 Contributors are welcome, please fork and send pull requests! If you have any ideas on how to improve this project please submit an issue.
