@@ -26,6 +26,10 @@ const includedFiles = [
   {
     desc : 'generates a config.js file',
     files: ['config.js']
+  },
+  {
+    desc : 'generates a README.md file',
+    files: ['README.md']
   }
 ];
 

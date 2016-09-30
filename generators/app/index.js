@@ -206,6 +206,17 @@ const serverGenerator = generators.Base.extend({
     }
   },
 
+  readme() {
+    this.fs.copyTpl(
+      this.templatePath('README.template.md'),
+      this.destinationPath('README.md'), {
+        useDocker: this.useDocker,
+        serverName: this.serverName,
+        serverDescription: this.serverDescription
+      }
+    );
+  },
+
   install() {
     this.npmInstall();
   }

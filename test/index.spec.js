@@ -42,6 +42,10 @@ describe('generator-api', () => {
       });
     });
 
+    it('generated README.md does not include references to docker', () => {
+      assert.noFileContent('README.md', /Docker/);
+    });
+
     describe('models', () => {
       it('generates a folder for each model', () => {
         assert.file([
@@ -120,6 +124,10 @@ describe('generator-api', () => {
 
     it('generates docker files when useDocker = true', () => {
       assert.file('Dockerfile', 'docker-compose.yml');
+    });
+
+    it('generated README.md does include references to docker', () => {
+      assert.fileContent('README.md', /Docker/);
     });
   });
 });
