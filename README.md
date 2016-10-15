@@ -7,6 +7,8 @@
 [![bitHound Code](https://www.bithound.io/github/ndelvalle/generator-api/badges/code.svg)](https://www.bithound.io/github/ndelvalle/generator-api)
 [![npm](https://img.shields.io/npm/v/generator-api.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/generator-api)
 
+[![NPM](https://nodei.co/npm/generator-api.png?downloads=true)](https://nodei.co/npm/generator-api/)
+
 Yeoman generator for creating RESTful NodeJS APIs, using ES6, Mongoose and Express. The fastest way to get your project up and running using an awesome stack.
 
 ![generator](http://yeoman.io/static/illustration-home-inverted.91b07808be.png)
@@ -21,16 +23,12 @@ Yeoman generator for creating RESTful NodeJS APIs, using ES6, Mongoose and Expre
 
 ## Running the generated project
 
+Make sure you have node version `>= 6` because this project uses native supported ES6 features.
+
 ### Development
 
-The app will run at `localhost:8080`.
-
-Make sure you have node version `>= 6.3` because this project uses native supported ES6 features.
-
-- Run: `mongod` to start the local mongodb in a separated terminal instance.
-- Run: `npm run dev` to run the app.
-
-NOTE: _If you don't have mongodb installed locally, visit [their webpage](https://docs.mongodb.com/manual/installation/)._
+- Run: `mongod` to start the local mongodb in a separated terminal instance (If you don't have mongodb installed locally, visit It's [webpage](https://docs.mongodb.com/manual/installation/) to learn how to install it).
+- Run: `npm run dev` to run the app (By default the app will run at `localhost:8080`, you can change this in the config file).
 
 **Did you choose Docker support?** :whale:
 
@@ -38,15 +36,15 @@ You only need [Docker](https://docs.docker.com/engine/installation/) and [docker
 
 - Run: `docker-compose up` to run the app. _You might need `sudo` for this one_.
 
-### production
+### Production
 
-_you'll likely be consuming mongodb as a service, so make sure you set the env var to connect to it._
+You'll likely be consuming mongodb as a service, so make sure to set the env var pointing at it.
 
 Just run `npm start`.
 
 **Wait, you choose Docker right?** :whale:
 
-build the Docker container and run it:
+Build the Docker container and run it:
 
 ```bash
 sudo docker build -t <image-name> .
