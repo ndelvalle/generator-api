@@ -1,6 +1,6 @@
 {
   "name": "generator-api",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Yeoman generator for creating RESTful NodeJS APIs, using ES6, Mongoose and Express",
   "main": "index.js",
   "scripts": {
@@ -30,11 +30,11 @@
     "yosay": "^1.2.0"
   },
   "devDependencies": {
-    "eslint": "^3.8.0",
-    "eslint-config-airbnb": "^10.0.1",
-    "eslint-plugin-import": "^1.16.0",
+    "eslint": "^3.10.0",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react": "^6.4.1",
+    "eslint-plugin-react": "^6.6.0",
     "mocha": "^3.0.2",
     "pre-commit": "^1.1.3",
     "yeoman-assert": "^2.2.1",

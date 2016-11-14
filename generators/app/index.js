@@ -27,7 +27,7 @@ const serverGenerator = generators.Base.extend({
         name    : 'serverName',
         type    : 'input',
         message : 'Server name:',
-        filter  : (answer) => to.slug(answer),
+        filter  : answer => to.slug(answer),
         default : path.basename(this.destinationPath())
       }, {
         name    : 'serverDescription',
@@ -52,19 +52,19 @@ const serverGenerator = generators.Base.extend({
         name    : 'models',
         type    : 'input',
         message : 'Models: (singular and comma separated)',
-        filter  : (answer) => answer.split(','),
+        filter  : answer => answer.split(','),
         default : 'user, pet'
       }, {
         name    : 'databaseName',
         type    : 'input',
         message : 'what should the database be named?',
-        default : (answers) => to.slug(answers.serverName)
+        default : answers => to.slug(answers.serverName)
       }, {
         name    : 'useDocker',
         type    : 'confirm',
         message : 'would you like to have Docker included in the app?',
         default : true
-      }]).then(answers => {
+      }]).then((answers) => {
         this.serverName        = answers.serverName;
         this.serverDescription = answers.serverDescription;
         this.serverVersion     = answers.serverVersion;
@@ -154,7 +154,7 @@ const serverGenerator = generators.Base.extend({
     },
 
     model() {
-      this.models.forEach(model => {
+      this.models.forEach((model) => {
         this.fs.copyTpl(
           this.templatePath('model/controller.js'),
           this.destinationPath(`model/${model.slugName}/${model.slugName}-controller.js`), {

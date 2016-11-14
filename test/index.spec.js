@@ -23,20 +23,18 @@ describe('generator-api', () => {
       .toPromise());
 
 
-    includedFiles.forEach(fileCase => {
+    includedFiles.forEach((fileCase) => {
       it(fileCase.desc, () => {
         assert.file(fileCase.files);
       });
     });
 
-    const notIncludedFiles = [
-      {
-        desc : 'doest not generate docker files when useDocker = false',
-        files: ['Dockerfile', 'docker-compose.yml']
-      }
-    ];
+    const notIncludedFiles = [{
+      desc : 'doest not generate docker files when useDocker = false',
+      files: ['Dockerfile', 'docker-compose.yml']
+    }];
 
-    notIncludedFiles.forEach(fileCase => {
+    notIncludedFiles.forEach((fileCase) => {
       it(fileCase.desc, () => {
         assert.noFile(fileCase.files);
       });
