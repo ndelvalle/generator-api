@@ -56,7 +56,7 @@ sudo docker run \
 ```
 
 ## Architecture
-The idea is to be able to scale having a simple architecture. Assuming we use `user` and `pet` as models the generated project would look like this:
+Assuming we use `user` and `pet` models the generated project would look like this:
 
 ```
 ├───index.js
@@ -87,13 +87,8 @@ This layer works as a simplified interface of mongoose and as Business Model lay
 
 In `lib/facade` you have the basic support for RESTful methods. Because this class is extending from there, you got that solved. You can overwrite extended methods or create custom ones here. Also you can support more mongoose functionality like `skip`, `sort` etc.
 
-
-## To do
-* Create more generator templates to add new models once the project was initialized
-* Implement testing in the generated project
-
 ## Contributing
-Contributors are welcome, please fork and send pull requests! If you have any ideas on how to improve this project please submit an issue.
+Contributors are welcome, please fork and send pull requests! If you find a bug or have any ideas on how to improve this project please submit an issue.
 
 
 ## License
