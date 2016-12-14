@@ -22,7 +22,8 @@
     "express"
   ],
   "files": [
-    "generators/app"
+    "generators/app",
+    "generators/model"
   ],
   "dependencies": {
     "to-case": "^2.0.0",
