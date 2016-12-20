@@ -24,46 +24,46 @@ const serverGenerator = generators.Base.extend({
 
     ask() {
       return this.prompt([{
-        name    : 'serverName',
-        type    : 'input',
-        message : 'Server name:',
-        filter  : answer => to.slug(answer),
-        default : path.basename(this.destinationPath())
+        name   : 'serverName',
+        type   : 'input',
+        message: 'Server name:',
+        filter : answer => to.slug(answer),
+        default: path.basename(this.destinationPath())
       }, {
-        name    : 'serverDescription',
-        type    : 'input',
-        message : 'Server description:'
+        name   : 'serverDescription',
+        type   : 'input',
+        message: 'Server description:'
       }, {
-        name    : 'serverVersion',
-        type    : 'input',
-        message : 'Server version:',
-        default : '0.1.0'
+        name   : 'serverVersion',
+        type   : 'input',
+        message: 'Server version:',
+        default: '0.1.0'
       }, {
-        name    : 'authorName',
-        type    : 'input',
-        message : 'Author name:',
-        store   : true
+        name   : 'authorName',
+        type   : 'input',
+        message: 'Author name:',
+        store  : true
       }, {
-        name    : 'authorEmail',
-        type    : 'input',
-        message : 'Author email:',
-        store   : true
+        name   : 'authorEmail',
+        type   : 'input',
+        message: 'Author email:',
+        store  : true
       }, {
-        name    : 'models',
-        type    : 'input',
-        message : 'Models: (singular and comma separated)',
-        filter  : answer => answer.split(','),
-        default : 'user, pet'
+        name   : 'models',
+        type   : 'input',
+        message: 'Models: (singular and comma separated)',
+        filter : answer => answer.split(','),
+        default: 'user, pet'
       }, {
-        name    : 'databaseName',
-        type    : 'input',
-        message : 'what should the database be named?',
-        default : answers => to.slug(answers.serverName)
+        name   : 'databaseName',
+        type   : 'input',
+        message: 'what should the database be named?',
+        default: answers => to.slug(answers.serverName)
       }, {
-        name    : 'useDocker',
-        type    : 'confirm',
-        message : 'would you like to have Docker included in the app?',
-        default : true
+        name   : 'useDocker',
+        type   : 'confirm',
+        message: 'would you like to have Docker included in the app?',
+        default: true
       }]).then((answers) => {
         this.serverName        = answers.serverName;
         this.serverDescription = answers.serverDescription;

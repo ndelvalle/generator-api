@@ -17,7 +17,7 @@ class Controller {
 
   findById(req, res, next) {
     return this.facade.findById(req.params.id)
-    .then(doc => {
+    .then((doc) => {
       if (!doc) { return res.status(404).end(); }
       return res.status(200).json(doc);
     })
@@ -34,7 +34,7 @@ class Controller {
     const conditions = { _id: req.params.id };
 
     this.facade.update(conditions, req.body)
-    .then(doc => {
+    .then((doc) => {
       if (!doc) { return res.status(404).end(); }
       return res.status(200).json(doc);
     })
@@ -43,7 +43,7 @@ class Controller {
 
   remove(req, res, next) {
     this.facade.remove(req.params.id)
-    .then(doc => {
+    .then((doc) => {
       if (!doc) { return res.status(404).end(); }
       return res.status(204).end();
     })
