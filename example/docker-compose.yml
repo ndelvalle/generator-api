@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  web:
+    command: npm run dev
+    build: .
+    volumes:
+      - ./:/app
+    ports:
+      - "8080:8080"
+    links:
+      - mongo
+    environment:
+      - MONGO_DB_URI=mongodb://mongo:27017/example
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes_from:
+      - mongodata
+
+  mongodata:
+    image: tianon/true
+    volumes:
+      - /data/db
