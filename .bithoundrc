@@ -1,0 +1,8 @@
+{
+  "ignore": [
+    "examples/lib/controller.js"
+  ],
+  "critics": {
+    "wc": { "limit": 300 }
+  }
+}
