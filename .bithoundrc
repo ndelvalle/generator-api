@@ -1,6 +1,7 @@
 {
   "ignore": [
-    "examples/lib/controller.js"
+    "example/lib/controller.js",
+    "generators/app/templates/model/controller.js"
   ],
   "critics": {
     "wc": { "limit": 300 }
