@@ -1,19 +1,16 @@
-const path       = require('path');
-const yosay      = require('yosay');
-const to         = require('to-case');
-const generators = require('yeoman-generator');
+const path      = require('path');
+const yosay     = require('yosay');
+const to        = require('to-case');
+const Generator = require('yeoman-generator');
 
 
-const genModelNames = (model) => {
-  const modelNames = {
-    slugName  : to.slug(model),
-    pascalName: to.pascal(model),
-    camelName : to.camel(model)
-  };
-  return modelNames;
-};
+const genModelNames = model => ({
+  slugName  : to.slug(model),
+  pascalName: to.pascal(model),
+  camelName : to.camel(model)
+});
 
-const serverGenerator = generators.Base.extend({
+const serverGenerator = Generator.extend({
   prompting: {
     welcome() {
       this.log(yosay(

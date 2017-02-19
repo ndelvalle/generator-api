@@ -30,19 +30,17 @@ Make sure you have node version `>= 6` because this project uses native supporte
 - Run: `mongod` to start the local mongodb in a separated terminal instance (If you don't have mongodb installed locally, visit It's [webpage](https://docs.mongodb.com/manual/installation/) to learn how to install it).
 - Run: `npm run dev` to run the app (By default the app will run at `localhost:8080`, you can change this in the config file).
 
-**Did you choose Docker support?** :whale:
+**Did you choose Docker (:whale:) support?**
 
-You only need [Docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install/) installed, no mongodb, no node, no npm. :sunglasses:
+You only need [Docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install/) installed, forget about having node, mongodb or npm.
 
 - Run: `docker-compose up` to run the app. _You might need `sudo` for this one_.
 
 ### Production
 
-You'll likely be consuming mongodb as a service, so make sure to set the env var pointing at it.
+You'll likely be consuming mongodb as a service, so make sure to set the env var pointing at it. Then run `npm start`.
 
-Just run `npm start`.
-
-**Wait, you choose Docker right?** :whale:
+**Using Docker**
 
 Build the Docker container and run it:
 
@@ -56,7 +54,7 @@ sudo docker run \
 ```
 
 ## Architecture
-Assuming we use `user` and `pet` models the generated project would look like this:
+Assuming we use `user` and `pet` models the generated project will look like this:
 
 ```
 ├───index.js
@@ -83,9 +81,22 @@ Assuming we use `user` and `pet` models the generated project would look like th
 HTTP layer, in this instance you can manage express request, response and next. In `lib/controller` are the basic RESTful methods `find`, `findOne`, `findById`, `create`, `update` and `remove`. Because this class is extending from there, you got that solved. You can overwrite extended methods or create custom ones here.
 
 #### Facade:
-This layer works as a simplified interface of mongoose and as Business Model layer, in this instance you can manage your business logic. For example, if you want to create a pet before creating a user, because you'll end up adding that pet to the person, this is the place.
+This layer works as a simplified interface of mongoose and as business model layer, in this instance you can manage your business logic.
+Here are some use case examples:
+* Validate collection `x` before creating collection `y`
+* Create collection `x` before creating collection `y`
 
 In `lib/facade` you have the basic support for RESTful methods. Because this class is extending from there, you got that solved. You can overwrite extended methods or create custom ones here. Also you can support more mongoose functionality like `skip`, `sort` etc.
+
+## Model subgenerator
+
+Once you have the generated project, if you want to add a new model you can simply run `yo api:model`. This will generate a new folder under `model`, in order to make it work, you just need to import the route into the `routes.js`.
+
+Example:
+
+* Run `yo api:model`, write foo (What ever model name you want)
+* Go to `routes.js` and import the new generated model route `const foo = require('./model/foo/foo-router');`
+* Use the imported route `router.use('/foo', foo);`
 
 ## Contributing
 Contributors are welcome, please fork and send pull requests! If you find a bug or have any ideas on how to improve this project please submit an issue.
