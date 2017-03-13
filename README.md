@@ -37,6 +37,8 @@ You only need [Docker](https://docs.docker.com/engine/installation/) and [docker
 
 - Run: `docker-compose up` to run the app. _You might need `sudo` for this one_.
 
+_NOTE_: The Dockerfile uses `node:latest` as its starting point, if you wish to use another version of Node check out the available ones [here](https://hub.docker.com/_/node/).
+
 ### Production
 
 You'll likely be consuming mongodb as a service, so make sure to set the env var pointing at it. Then run `npm start`.
