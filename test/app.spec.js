@@ -69,16 +69,16 @@ describe('generator-api', () => {
         assert.file([
           'model/foo',
           'model/bar',
-          'model/baz-foo'
+          'model/foo'
         ]);
       });
 
       describe('controllers', () => {
         it('generates a controller for each model', () => {
           assert.file([
-            'model/foo/foo-controller.js',
-            'model/bar/bar-controller.js',
-            'model/baz-foo/baz-foo-controller.js'
+            'model/foo/controller.js',
+            'model/bar/controller.js',
+            'model/foo/controller.js'
           ]);
         });
       });
@@ -86,9 +86,9 @@ describe('generator-api', () => {
       describe('facades', () => {
         it('generates a facade for each model', () => {
           assert.file([
-            'model/foo/foo-facade.js',
-            'model/bar/bar-facade.js',
-            'model/baz-foo/baz-foo-facade.js'
+            'model/foo/facade.js',
+            'model/bar/facade.js',
+            'model/foo/facade.js'
           ]);
         });
       });
@@ -96,9 +96,9 @@ describe('generator-api', () => {
       describe('routes', () => {
         it('generates a router for each model', () => {
           assert.file([
-            'model/foo/foo-router.js',
-            'model/bar/bar-router.js',
-            'model/baz-foo/baz-foo-router.js'
+            'model/foo/router.js',
+            'model/bar/router.js',
+            'model/foo/router.js'
           ]);
         });
       });
@@ -106,9 +106,9 @@ describe('generator-api', () => {
       describe('schemas', () => {
         it('generates a schema for each model', () => {
           assert.file([
-            'model/foo/foo-schema.js',
-            'model/bar/bar-schema.js',
-            'model/baz-foo/baz-foo-schema.js'
+            'model/foo/schema.js',
+            'model/bar/schema.js',
+            'model/foo/schema.js'
           ]);
         });
       });

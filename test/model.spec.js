@@ -24,8 +24,8 @@ describe('generator-api:model', () => {
       describe('controllers', () => {
         it('generates a controller for each model', () => {
           assert.file([
-            'model/newmodel1/newmodel1-controller.js',
-            'model/newmodel2/newmodel2-controller.js'
+            'model/newmodel1/controller.js',
+            'model/newmodel2/controller.js'
           ]);
         });
       });
@@ -33,8 +33,8 @@ describe('generator-api:model', () => {
       describe('facades', () => {
         it('generates a facade for each model', () => {
           assert.file([
-            'model/newmodel1/newmodel1-facade.js',
-            'model/newmodel2/newmodel2-facade.js'
+            'model/newmodel1/facade.js',
+            'model/newmodel2/facade.js'
           ]);
         });
       });
@@ -42,8 +42,8 @@ describe('generator-api:model', () => {
       describe('routes', () => {
         it('generates a router for each model', () => {
           assert.file([
-            'model/newmodel1/newmodel1-router.js',
-            'model/newmodel2/newmodel2-router.js'
+            'model/newmodel1/router.js',
+            'model/newmodel2/router.js'
           ]);
         });
       });
@@ -51,8 +51,8 @@ describe('generator-api:model', () => {
       describe('schemas', () => {
         it('generates a schema for each model', () => {
           assert.file([
-            'model/newmodel1/newmodel1-schema.js',
-            'model/newmodel2/newmodel2-schema.js'
+            'model/newmodel1/schema.js',
+            'model/newmodel2/schema.js'
           ]);
         });
       });
