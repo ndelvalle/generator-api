@@ -1,5 +1,5 @@
 const Facade = require('../../lib/facade');
-const <%= model.camelName %>Schema  = require('./<%= model.slugName %>-schema');
+const <%= model.camelName %>Schema = require('./schema');
 
 class <%= model.pascalName %>Facade extends Facade {}
 
