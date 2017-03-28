@@ -27,10 +27,10 @@ const serverGenerator = Generator.extend({
     model() {
       this.models.forEach((model) => {
 
-        const controllerPath = `model/${model.slugName}/${model.slugName}-controller.js`;
-        const facadePath     = `model/${model.slugName}/${model.slugName}-facade.js`;
-        const routerPath     = `model/${model.slugName}/${model.slugName}-router.js`;
-        const schemaPath     = `model/${model.slugName}/${model.slugName}-schema.js`;
+        const controllerPath = `model/${model.slugName}/controller.js`;
+        const facadePath     = `model/${model.slugName}/facade.js`;
+        const routerPath     = `model/${model.slugName}/router.js`;
+        const schemaPath     = `model/${model.slugName}/schema.js`;
 
         if (
           this.fs.exists(this.destinationPath(controllerPath)) ||
@@ -44,7 +44,7 @@ const serverGenerator = Generator.extend({
 
         this.fs.copyTpl(
           this.templatePath('./../../app/templates/model/controller.js'),
-          this.destinationPath(`model/${model.slugName}/${model.slugName}-controller.js`), {
+          this.destinationPath(`model/${model.slugName}/controller.js`), {
             model
           }
         );

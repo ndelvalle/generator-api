@@ -37,6 +37,8 @@ You only need [Docker](https://docs.docker.com/engine/installation/) and [docker
 
 - Run: `docker-compose up` to run the app. _You might need `sudo` for this one_.
 
+_NOTE_: The Dockerfile uses `node:latest` as its starting point, if you wish to use another version of Node check out the available ones [here](https://hub.docker.com/_/node/).
+
 ### Production
 
 You'll likely be consuming mongodb as a service, so make sure to set the env var pointing at it. Then run `npm start`.
@@ -67,15 +69,15 @@ Assuming we use `user` and `pet` models the generated project will look like thi
 |   ├───facade.js
 └───model/
     ├───user/
-    │   └───user-controller.js
-    |   └───user-facade.js
-    |   └───user-router.js
-    |   └───user-schema.js
+    │   └───controller.js
+    |   └───facade.js
+    |   └───router.js
+    |   └───schema.js
     └───pet/
-        └───pet-controller.js
-        └───pet-facade.js
-        └───pet-router.js
-        └───pet-schema.js
+        └───controller.js
+        └───facade.js
+        └───router.js
+        └───schema.js
 ```
 
 #### Controller:
@@ -96,7 +98,7 @@ Once you have the generated project, if you want to add a new model you can simp
 Example:
 
 * Run `yo api:model`, write foo (What ever model name you want)
-* Go to `routes.js` and import the new generated model route `const foo = require('./model/foo/foo-router');`
+* Go to `routes.js` and import the new generated model route `const foo = require('./model/foo/router');`
 * Use the imported route `router.use('/foo', foo);`
 
 ## Contributing

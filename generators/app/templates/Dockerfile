@@ -1,19 +1,15 @@
-FROM node:wheezy
+FROM node:latest
 
-ENV APP_HOME /app/
-ENV TEMP_NPM /temp
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
-RUN mkdir $APP_HOME
+# Install app dependencies
+COPY package.json /usr/src/app/
+RUN npm install
 
-# caching npm packages
-WORKDIR $TEMP_NPM
-COPY package.json $TEMP_NPM
-RUN npm config set registry https://registry.npmjs.org/
-RUN npm install --silent
-RUN cp -a $TEMP_NPM/node_modules $APP_HOME
-
-WORKDIR $APP_HOME
-
-COPY ./ $APP_HOME
+# Bundle app source
+COPY . /usr/src/app
 
 EXPOSE 8080
+
