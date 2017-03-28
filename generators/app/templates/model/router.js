@@ -1,4 +1,4 @@
-const controller = require('./<%= model.slugName %>-controller');
+const controller = require('./controller');
 const Router = require('express').Router;
 const router = new Router();
 

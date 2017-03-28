@@ -215,7 +215,11 @@ const serverGenerator = Generator.extend({
   },
 
   install() {
-    this.npmInstall();
+    this.installDependencies({
+      npm  : true,
+      bower: false,
+      yarn : true
+    });
   }
 });
 
