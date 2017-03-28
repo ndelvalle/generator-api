@@ -154,28 +154,28 @@ const serverGenerator = Generator.extend({
       this.models.forEach((model) => {
         this.fs.copyTpl(
           this.templatePath('model/controller.js'),
-          this.destinationPath(`model/${model.slugName}/${model.slugName}-controller.js`), {
+          this.destinationPath(`model/${model.slugName}/controller.js`), {
             model
           }
         );
 
         this.fs.copyTpl(
           this.templatePath('model/facade.js'),
-          this.destinationPath(`model/${model.slugName}/${model.slugName}-facade.js`), {
+          this.destinationPath(`model/${model.slugName}/facade.js`), {
             model
           }
         );
 
         this.fs.copyTpl(
           this.templatePath('model/router.js'),
-          this.destinationPath(`model/${model.slugName}/${model.slugName}-router.js`), {
+          this.destinationPath(`model/${model.slugName}/router.js`), {
             model
           }
         );
 
         this.fs.copyTpl(
           this.templatePath('model/schema.js'),
-          this.destinationPath(`model/${model.slugName}/${model.slugName}-schema.js`), {
+          this.destinationPath(`model/${model.slugName}/schema.js`), {
             model
           }
         );
