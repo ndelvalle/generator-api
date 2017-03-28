@@ -216,7 +216,7 @@ const serverGenerator = Generator.extend({
 
   install() {
     this.installDependencies({
-      npm  : false,
+      npm  : true,
       bower: false,
       yarn : true
     });
