@@ -69,7 +69,7 @@ describe('generator-api', () => {
         assert.file([
           'model/foo',
           'model/bar',
-          'model/foo'
+          'model/baz-foo'
         ]);
       });
 
@@ -78,7 +78,7 @@ describe('generator-api', () => {
           assert.file([
             'model/foo/controller.js',
             'model/bar/controller.js',
-            'model/foo/controller.js'
+            'model/baz-foo/controller.js'
           ]);
         });
       });
@@ -88,7 +88,7 @@ describe('generator-api', () => {
           assert.file([
             'model/foo/facade.js',
             'model/bar/facade.js',
-            'model/foo/facade.js'
+            'model/baz-foo/facade.js'
           ]);
         });
       });
@@ -98,7 +98,7 @@ describe('generator-api', () => {
           assert.file([
             'model/foo/router.js',
             'model/bar/router.js',
-            'model/foo/router.js'
+            'model/baz-foo/router.js'
           ]);
         });
       });
@@ -108,7 +108,7 @@ describe('generator-api', () => {
           assert.file([
             'model/foo/schema.js',
             'model/bar/schema.js',
-            'model/foo/schema.js'
+            'model/baz-foo/schema.js'
           ]);
         });
       });
