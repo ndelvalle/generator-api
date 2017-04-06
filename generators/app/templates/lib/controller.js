@@ -31,7 +31,7 @@ class Controller {
   }
 
   update(req, res, next) {
-    this.facade.update({ _id: req.params.id }, req.body, { new: true })
+    this.facade.update({ _id: req.params.id }, req.body)
       .then((results) => {
         if (results.n < 1) { return res.sendStatus(404); }
         if (results.nModified < 1) { return res.sendStatus(304); }
