@@ -24,7 +24,7 @@ class Controller {
   findById(req, res, next) {
     return this.facade.findById(req.params.id)
       .then((doc) => {
-        if (!doc) { return res.status(404).end(); }
+        if (!doc) { return res.sendStatus(404); }
         return res.status(200).json(doc);
       })
       .catch(err => next(err));
@@ -43,8 +43,8 @@ class Controller {
   remove(req, res, next) {
     this.facade.remove({ _id: req.params.id })
       .then((doc) => {
-        if (!doc) { return res.status(404).end(); }
-        return res.status(204).end();
+        if (!doc) { return res.sendStatus(404); }
+        return res.sendStatus(204);
       })
       .catch(err => next(err));
   }
