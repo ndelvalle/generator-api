@@ -4,7 +4,6 @@
     "generators/app/templates/model/controller.js",
     "generators/app/templates/model/facade.js",
     "example/lib/facade.js"
-
   ],
   "critics": {
     "wc": { "limit": 300 }

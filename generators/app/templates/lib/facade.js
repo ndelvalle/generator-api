@@ -3,39 +3,39 @@ class Facade {
     this.Schema = Schema;
   }
 
-  create(input) {
-    const schema = new this.Schema(input);
+  create(body) {
+    const schema = new this.Schema(body);
     return schema.save();
   }
 
-  update(conditions, update) {
+  find(...args) {
     return this.Schema
-    .update(conditions, update, { new: true })
-    .exec();
+      .find(...args)
+      .exec();
   }
 
-  find(...query) {
+  findOne(...args) {
     return this.Schema
-    .find(...query)
-    .exec();
+      .findOne(...args)
+      .exec();
   }
 
-  findOne(...query) {
+  findById(...args) {
     return this.Schema
-    .findOne(...query)
-    .exec();
+      .findById(...args)
+      .exec();
   }
 
-  findById(id) {
+  update(...args) {
     return this.Schema
-    .findById(id)
-    .exec();
+      .update(...args)
+      .exec();
   }
 
-  remove(id) {
+  remove(...args) {
     return this.Schema
-    .findByIdAndRemove(id)
-    .exec();
+      .remove(...args)
+      .exec();
   }
 }
 

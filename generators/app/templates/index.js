@@ -17,6 +17,7 @@ app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
+
 app.use('/', routes);
 
 app.listen(config.server.port, () => {
