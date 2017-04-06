@@ -14,15 +14,15 @@ class Facade {
     .exec();
   }
 
-  find(query) {
+  find(...query) {
     return this.Schema
-    .find(query)
+    .find(...query)
     .exec();
   }
 
-  findOne(query) {
+  findOne(...query) {
     return this.Schema
-    .findOne(query)
+    .findOne(...query)
     .exec();
   }
 
