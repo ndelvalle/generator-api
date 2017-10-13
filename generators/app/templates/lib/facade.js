@@ -1,39 +1,41 @@
-class Facade {
-  constructor(Schema) {
-    this.Schema = Schema;
+const mongoose = require('mongoose');
+
+Model Facade {
+  constructor(name, schema) {
+    this.model = mongoose.model(name, schema);
   }
 
   create(body) {
-    const schema = new this.Schema(body);
-    return schema.save();
+    const model = new this.model(body);
+    return model.save();
   }
 
   find(...args) {
-    return this.Schema
+    return this.model
       .find(...args)
       .exec();
   }
 
   findOne(...args) {
-    return this.Schema
+    return this.model
       .findOne(...args)
       .exec();
   }
 
   findById(...args) {
-    return this.Schema
+    return this.model
       .findById(...args)
       .exec();
   }
 
   update(...args) {
-    return this.Schema
+    return this.model
       .update(...args)
       .exec();
   }
 
   remove(...args) {
-    return this.Schema
+    return this.model
       .remove(...args)
       .exec();
   }

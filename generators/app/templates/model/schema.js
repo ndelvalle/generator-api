@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 
 
@@ -8,4 +8,4 @@ const <%= model.camelName %>Schema = new Schema({
 });
 
 
-module.exports = mongoose.model('<%= model.pascalName %>', <%= model.camelName %>Schema);
+module.exports =  <%= model.camelName %>Schema;
