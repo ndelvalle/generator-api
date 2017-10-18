@@ -13,10 +13,8 @@ const genModelNames = model => ({
 const serverGenerator = Generator.extend({
   prompting: {
     welcome() {
-      this.log(yosay(
-        '\'Allo \'allo! Out of the box I include Express and Mongoose, as well as a' +
-        'few other goodies, to build your rest api Server.'
-      ));
+      this.log(yosay('\'Allo \'allo! Out of the box I include Express and Mongoose, as well as a' +
+                     'few other goodies, to build your rest api Server.'));
     },
 
     ask() {
