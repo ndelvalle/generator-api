@@ -1,41 +1,43 @@
+const mongoose = require('mongoose');
+
 class Facade {
-  constructor(Schema) {
-    this.Schema = Schema;
+  constructor(name, schema) {
+    this.model = mongoose.model(name, schema);
   }
 
-  create(input) {
-    const schema = new this.Schema(input);
-    return schema.save();
+  create(body) {
+    const model = new this.model(body);
+    return model.save();
   }
 
-  update(conditions, update) {
-    return this.Schema
-    .update(conditions, update, { new: true })
-    .exec();
+  find(...args) {
+    return this.model
+      .find(...args)
+      .exec();
   }
 
-  find(...query) {
-    return this.Schema
-    .find(...query)
-    .exec();
+  findOne(...args) {
+    return this.model
+      .findOne(...args)
+      .exec();
   }
 
-  findOne(...query) {
-    return this.Schema
-    .findOne(...query)
-    .exec();
+  findById(...args) {
+    return this.model
+      .findById(...args)
+      .exec();
   }
 
-  findById(id) {
-    return this.Schema
-    .findById(id)
-    .exec();
+  update(...args) {
+    return this.model
+      .update(...args)
+      .exec();
   }
 
-  remove(id) {
-    return this.Schema
-    .findByIdAndRemove(id)
-    .exec();
+  remove(...args) {
+    return this.model
+      .remove(...args)
+      .exec();
   }
 }
 

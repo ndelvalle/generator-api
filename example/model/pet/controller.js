@@ -1,5 +1,5 @@
 const Controller = require('../../lib/controller');
-const petFacade  = require('./pet-facade');
+const petFacade = require('./facade');
 
 class PetController extends Controller {}
 

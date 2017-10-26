@@ -3,53 +3,51 @@ class Controller {
     this.facade = facade;
   }
 
+  create(req, res, next) {
+    this.facade.create(req.body)
+      .then(doc => res.status(201).json(doc))
+      .catch(err => next(err));
+  }
+
   find(req, res, next) {
     return this.facade.find(req.query)
-    .then(collection => res.status(200).json(collection))
-    .catch(err => next(err));
+      .then(collection => res.status(200).json(collection))
+      .catch(err => next(err));
   }
 
   findOne(req, res, next) {
     return this.facade.findOne(req.query)
-    .then(doc => res.status(200).json(doc))
-    .catch(err => next(err));
+      .then(doc => res.status(200).json(doc))
+      .catch(err => next(err));
   }
 
   findById(req, res, next) {
     return this.facade.findById(req.params.id)
-    .then((doc) => {
-      if (!doc) { return res.status(404).end(); }
-      return res.status(200).json(doc);
-    })
-    .catch(err => next(err));
-  }
-
-  create(req, res, next) {
-    this.facade.create(req.body)
-    .then(doc => res.status(201).json(doc))
-    .catch(err => next(err));
+      .then((doc) => {
+        if (!doc) { return res.sendStatus(404); }
+        return res.status(200).json(doc);
+      })
+      .catch(err => next(err));
   }
 
   update(req, res, next) {
-    const conditions = { _id: req.params.id };
-
-    this.facade.update(conditions, req.body)
-    .then((doc) => {
-      if (!doc) { return res.status(404).end(); }
-      return res.status(200).json(doc);
-    })
-    .catch(err => next(err));
+    this.facade.update({ _id: req.params.id }, req.body)
+      .then((results) => {
+        if (results.n < 1) { return res.sendStatus(404); }
+        if (results.nModified < 1) { return res.sendStatus(304); }
+        res.sendStatus(204);
+      })
+      .catch(err => next(err));
   }
 
   remove(req, res, next) {
-    this.facade.remove(req.params.id)
-    .then((doc) => {
-      if (!doc) { return res.status(404).end(); }
-      return res.status(204).end();
-    })
-    .catch(err => next(err));
+    this.facade.remove({ _id: req.params.id })
+      .then((doc) => {
+        if (!doc) { return res.sendStatus(404); }
+        return res.sendStatus(204);
+      })
+      .catch(err => next(err));
   }
-
 }
 
 module.exports = Controller;
