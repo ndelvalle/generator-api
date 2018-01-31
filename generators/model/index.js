@@ -41,7 +41,7 @@ const serverGenerator = Generator.extend({
           this.log(`Model ${model.slugName} already exists`);
           return;
         }
-       if (this.fs.exists(this.destinationPath('routes.js'))) {
+        if (this.fs.exists(this.destinationPath('routes.js'))) {
           let routes = this.fs.read(this.destinationPath('routes.js'));
           routes = routes.split('\n');
           const routerPathmini = routerPath.slice(0, -3);
