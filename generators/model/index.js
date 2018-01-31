@@ -41,20 +41,19 @@ const serverGenerator = Generator.extend({
           this.log(`Model ${model.slugName} already exists`);
           return;
         }
-        if (this.fs.exists(this.destinationPath('routes.js'))) {
-           let routes = this.fs.read(this.destinationPath('routes.js'));
-           routes = routes.split('\n');
-           const routerPathmini = routerPath.slice(0, -3);
-           let lineindex = routes.findIndex(line => line.includes('router.use'));
-           routes.splice(3, 0, `const ${model.slugName} = require('./${routerPathmini}');`);
-           if (lineindex === -1) {
-             lineindex = 11;
-           }
-           routes.splice(lineindex, 0, `router.use('/${model.slugName}', ${model.slugName});`);
-           routes = routes.join('\n');
-
-           this.fs.write(this.destinationPath('routes.js'), routes);
-         }
+       if (this.fs.exists(this.destinationPath('routes.js'))) {
+          let routes = this.fs.read(this.destinationPath('routes.js'));
+          routes = routes.split('\n');
+          const routerPathmini = routerPath.slice(0, -3);
+          let lineindex = routes.findIndex(line => line.includes('router.use'));
+          routes.splice(3, 0, `const ${model.slugName} = require('./${routerPathmini}');`);
+          if (lineindex === -1) {
+            lineindex = 11;
+          }
+          routes.splice(lineindex, 0, `router.use('/${model.slugName}', ${model.slugName});`);
+          routes = routes.join('\n');
+          this.fs.write(this.destinationPath('routes.js'), routes);
+        }
         this.fs.copyTpl(
           this.templatePath('./../../app/templates/model/controller.js'),
           this.destinationPath(`model/${model.slugName}/controller.js`), {
