@@ -44,9 +44,8 @@ const serverGenerator = Generator.extend({
             let routes = this.fs.read(this.destinationPath('routes.js'));
             routes = routes.split('\n');
             const routerPathmini = routerPath.slice(0, -3);
-            console.log(routerPath, routerPathmini);
+            let lineindex = routes.findIndex(line => line.includes('router.use'));
             routes.splice(3, 0, `const ${model.slugName} = require('./${routerPathmini}');`);
-            const lineindex = routes.findIndex(line => line.includes('router.use'));
             if (lineindex === -1) {
               lineindex = 11;
             }
