@@ -6,6 +6,6 @@ const config = {
   mongo: {
     url: process.env.MONGO_DB_URI || 'mongodb://localhost/example'
   }
-};
+}
 
-module.exports = config;
+module.exports = config

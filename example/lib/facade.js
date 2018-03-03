@@ -1,44 +1,44 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 class Facade {
-  constructor(name, schema) {
-    this.model = mongoose.model(name, schema);
+  constructor (name, schema) {
+    this.model = mongoose.model(name, schema)
   }
 
-  create(body) {
-    const model = new this.model(body);
-    return model.save();
+  create (body) {
+    const model = new this.model(body)
+    return model.save()
   }
 
-  find(...args) {
+  find (...args) {
     return this.model
       .find(...args)
-      .exec();
+      .exec()
   }
 
-  findOne(...args) {
+  findOne (...args) {
     return this.model
       .findOne(...args)
-      .exec();
+      .exec()
   }
 
-  findById(...args) {
+  findById (...args) {
     return this.model
       .findById(...args)
-      .exec();
+      .exec()
   }
 
-  update(...args) {
+  update (...args) {
     return this.model
       .update(...args)
-      .exec();
+      .exec()
   }
 
-  remove(...args) {
+  remove (...args) {
     return this.model
       .remove(...args)
-      .exec();
+      .exec()
   }
 }
 
-module.exports = Facade;
+module.exports = Facade

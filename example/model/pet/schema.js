@@ -1,11 +1,9 @@
 
-const Schema = mongoose.Schema;
-
+const Schema = mongoose.Schema
 
 const petSchema = new Schema({
   title: { type: String, required: true },
   body: { type: String }
-});
+})
 
-
-module.exports =  petSchema;
+module.exports = petSchema

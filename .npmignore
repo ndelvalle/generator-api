@@ -4,3 +4,4 @@ example
 .eslintignore
 .eslintrc.json
 .gitignore
+package-lock.json
