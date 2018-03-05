@@ -98,8 +98,8 @@ Once you have the generated project, if you want to add a new model you can simp
 Example:
 
 * Run `yo api:model`, write foo (What ever model name you want)
-* Go to `routes.js` and import the new generated model route `const foo = require('./model/foo/router');`
-* Use the imported route `router.use('/foo', foo);`
+* Go to `routes.js` and import the new generated model route `const foo = require('./model/foo/router')`
+* Use the imported route `router.use('/foo', foo)`
 
 ## Contributing
 Contributors are welcome, please fork and send pull requests! If you find a bug or have any ideas on how to improve this project please submit an issue.

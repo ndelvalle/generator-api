@@ -11,7 +11,7 @@ services:
     links:
       - mongo
     environment:
-      - MONGO_DB_URI=mongodb://mongo:27017/example
+      - MONGO_DB_URI=mongodb://mongo:27017/example-api
 
   mongo:
     image: mongo

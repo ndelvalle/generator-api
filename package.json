@@ -6,7 +6,7 @@
   "scripts": {
     "prepublish": "npm test",
     "test": "mocha --bail test/*.spec.js",
-    "eslint": "eslint . --ext .js",
+    "lint": "standard",
     "release": "np"
   },
   "author": "ndelvalle <nicolas.delvalle@gmail.com>",
@@ -28,20 +28,17 @@
   ],
   "dependencies": {
     "to-case": "^2.0.0",
-    "yeoman-generator": "^1.1.0",
+    "yeoman-generator": "^2.0.3",
     "yosay": "^2.0.0"
   },
   "devDependencies": {
-    "eslint": "^4.9.0",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.4.0",
-    "mocha": "^3.0.2",
+    "eslint-config-standard": "^11.0.0",
+    "mocha": "^5.0.1",
     "np": "^2.12.0",
     "pre-commit": "^1.1.3",
+    "standard": "^11.0.0",
     "yeoman-assert": "^3.1.0",
-    "yeoman-test": "^1.5.1"
+    "yeoman-test": "^1.7.0"
   },
   "bugs": {
     "url": "https://github.com/ndelvalle/generator-api/issues"
@@ -51,6 +48,16 @@
     "url": "git+https://github.com/ndelvalle/generator-api.git"
   },
   "pre-commit": [
-    "eslint"
-  ]
+    "lint"
+  ],
+  "standard": {
+    "ignore": [
+      "/generators/app/templates/model/",
+      "/generators/app/templates/routes.js"
+    ]
+  },
+  "engines": {
+    "node": "8",
+    "npm": "5"
+  }
 }

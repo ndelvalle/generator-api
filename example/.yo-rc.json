@@ -1,8 +1,8 @@
 {
   "generator-api": {
     "promptValues": {
-      "authorName": "",
-      "authorEmail": ""
+      "authorName": "Nicolas Del Valle",
+      "authorEmail": "nicolas.delvalle@gmail.com"
     }
   }
 }
