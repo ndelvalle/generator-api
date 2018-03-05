@@ -6,21 +6,20 @@ const path = require('path')
 
 describe('generator-api', () => {
   describe('Run yeoman generator-api with no docker support', () => {
-    before(() => helpers.run(path.join(__dirname, '../generators/app'))
-      .withPrompts({
-        serverName: 'serverName',
-        serverDescription: 'serverDescription',
-        serverVersion: 'serverVersion',
-        authorName: 'authorName',
-        authorEmail: 'authorEmail',
-        models: ['foo', 'bar', 'BazFoo'],
-        databaseName: 'databaseName',
-        useDocker: false
-      })
-      .toPromise());
+    before(() => helpers.run(path.join(__dirname, '../generators/app')).withPrompts({
+      serverName: 'serverName',
+      serverDescription: 'serverDescription',
+      serverVersion: 'serverVersion',
+      authorName: 'authorName',
+      authorEmail: 'authorEmail',
+      models: ['foo', 'bar', 'BazFoo'],
+      databaseName: 'databaseName',
+      useDocker: false
+    })
+      .toPromise())
 
-    // test included files
-    [{
+    // Test included files
+    ;[{
       desc: 'generates an index.js file',
       files: ['index.js']
     }, {
@@ -48,10 +47,10 @@ describe('generator-api', () => {
       it(fileCase.desc, () => {
         assert.file(fileCase.files)
       })
-    });
+    })
 
-    // test not included files
-    [{
+    // Test not included files
+    ;[{
       desc: 'doest not generate docker files when useDocker = false',
       files: ['Dockerfile', 'docker-compose.yml']
     }].forEach((fileCase) => {

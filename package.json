@@ -6,7 +6,7 @@
   "scripts": {
     "prepublish": "npm test",
     "test": "mocha --bail test/*.spec.js",
-    "eslint": "eslint . --ext .js",
+    "lint": "standard",
     "release": "np"
   },
   "author": "ndelvalle <nicolas.delvalle@gmail.com>",
@@ -48,8 +48,14 @@
     "url": "git+https://github.com/ndelvalle/generator-api.git"
   },
   "pre-commit": [
-    "eslint"
+    "lint"
   ],
+  "standard": {
+    "ignore": [
+      "/generators/app/templates/model/",
+      "/generators/app/templates/routes.js"
+    ]
+  },
   "engines": {
     "node": "8",
     "npm": "5"

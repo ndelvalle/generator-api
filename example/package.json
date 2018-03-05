@@ -1,7 +1,7 @@
 {
-  "name": "example",
+  "name": "example-api",
   "version": "0.1.0",
-  "description": "",
+  "description": "Example API",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
@@ -10,21 +10,19 @@
   "engines": {
     "node": ">=6"
   },
-  "author": " <>",
+  "author": "Nicolas Del Valle <nicolas.delvalle@gmail.com>",
   "dependencies": {
-    "bluebird": "^3.4.6",
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "helmet": "^3.1.0",
-    "mongoose": "^4.7.0",
-    "morgan": "^1.7.0"
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "helmet": "^3.12.0",
+    "mongoose": "^5.0.8",
+    "morgan": "^1.9.0"
   },
   "devDependencies": {
-    "eslint": "^3.11.1",
-    "eslint-config-airbnb": "^13.0.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react": "^6.7.1",
-    "nodemon": "^1.11.0"
+    "eslint": "^4.18.2",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "nodemon": "^1.17.1"
   }
 }

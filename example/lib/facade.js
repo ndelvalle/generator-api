@@ -2,40 +2,40 @@ const mongoose = require('mongoose')
 
 class Facade {
   constructor (name, schema) {
-    this.model = mongoose.model(name, schema)
+    this.Model = mongoose.model(name, schema)
   }
 
   create (body) {
-    const model = new this.model(body)
+    const model = new this.Model(body)
     return model.save()
   }
 
   find (...args) {
-    return this.model
+    return this.Model
       .find(...args)
       .exec()
   }
 
   findOne (...args) {
-    return this.model
+    return this.Model
       .findOne(...args)
       .exec()
   }
 
   findById (...args) {
-    return this.model
+    return this.Model
       .findById(...args)
       .exec()
   }
 
   update (...args) {
-    return this.model
+    return this.Model
       .update(...args)
       .exec()
   }
 
   remove (...args) {
-    return this.model
+    return this.Model
       .remove(...args)
       .exec()
   }
