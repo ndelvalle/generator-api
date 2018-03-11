@@ -1,7 +1,7 @@
 # generator-api
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c4ef0a3c22c940469bb69af91a44f386)](https://www.codacy.com/app/ndelvalle/generator-api?utm_source=github.com&utm_medium=referral&utm_content=ndelvalle/generator-api&utm_campaign=badger)
-[![CircleCI](https://circleci.com/gh/ndelvalle/generator-api.svg?style=svg)](https://circleci.com/gh/ndelvalle/generator-api)
+[![Codeship Status for generator-api](https://img.shields.io/codeship/2078d9b0-07a0-0136-24ea-22486c3356cd/master.svg)](https://app.codeship.com/projects/281027)
 [![bitHound Overall Score](https://www.bithound.io/github/ndelvalle/generator-api/badges/score.svg)](https://www.bithound.io/github/ndelvalle/generator-api)
 [![bitHound Dependencies](https://www.bithound.io/github/ndelvalle/generator-api/badges/dependencies.svg)](https://www.bithound.io/github/ndelvalle/generator-api/master/dependencies/npm)
 [![bitHound Dev Dependencies](https://www.bithound.io/github/ndelvalle/generator-api/badges/devDependencies.svg)](https://www.bithound.io/github/ndelvalle/generator-api/master/dependencies/npm)
