@@ -107,3 +107,6 @@ Contributors are welcome, please fork and send pull requests! If you find a bug 
 
 ## License
 [MIT License](https://github.com/ndelvalle/generator-api/blob/master/LICENSE)
+
+## Style guide
+[![Standard - JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
