@@ -1,8 +1,9 @@
 # generator-api
 
 [![Codeship Status for ndelvalle/generator-api](https://app.codeship.com/projects/2078d9b0-07a0-0136-24ea-22486c3356cd/status?branch=master)](https://app.codeship.com/projects/281027)
+[![dependencies Status](https://david-dm.org/ndelvalle/generator-api/status.svg)](https://david-dm.org/ndelvalle/generator-api)
+[![devDependencies Status](https://david-dm.org/ndelvalle/generator-api/dev-status.svg)](https://david-dm.org/ndelvalle/generator-api?type=dev)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c4ef0a3c22c940469bb69af91a44f386)](https://www.codacy.com/app/ndelvalle/generator-api?utm_source=github.com&utm_medium=referral&utm_content=ndelvalle/generator-api&utm_campaign=badger)
-[![npm](https://img.shields.io/npm/v/generator-api.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/generator-api)
 
 [![NPM](https://nodei.co/npm/generator-api.png?downloads=true)](https://nodei.co/npm/generator-api/)
 
