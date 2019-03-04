@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "eslint-config-standard": "^11.0.0",
-    "mocha": "^5.0.1",
+    "mocha": "^6.0.2",
     "np": "^3.0.1",
     "pre-commit": "^1.1.3",
     "standard": "^11.0.0",
