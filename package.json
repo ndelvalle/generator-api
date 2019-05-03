@@ -28,7 +28,7 @@
   ],
   "dependencies": {
     "to-case": "^2.0.0",
-    "yeoman-generator": "^2.0.3",
+    "yeoman-generator": "^3.2.0",
     "yosay": "^2.0.0"
   },
   "devDependencies": {
