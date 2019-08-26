@@ -32,7 +32,7 @@
     "yosay": "^2.0.0"
   },
   "devDependencies": {
-    "eslint-config-standard": "^11.0.0",
+    "eslint-config-standard": "^14.0.1",
     "mocha": "^6.1.4",
     "np": "^5.0.1",
     "pre-commit": "^1.1.3",
