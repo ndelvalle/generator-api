@@ -19,6 +19,41 @@ Yeoman generator for creating RESTful NodeJS APIs, using ES6, Mongoose and Expre
 - Install the generator **globally**: `npm install -g generator-api`
 - Run: `yo api`, or `yo` and choose `Api` option
 
+## Using Docker
+
+Download the Dockerfile:
+
+```bash
+mkdir docker
+cd docker
+wget https://github.com/ndelvalle/generator-api/raw/master/docker/Dockerfile
+```
+
+Build the Docker images:
+
+```bash
+docker build -t generator-api:latest .
+```
+
+Make a folder where you want to generate the Service:
+
+```bash
+mkdir service
+cd service
+```
+
+Run the generator from image to generate service:
+
+```bash
+docker run -it --rm -v $PWD:/home/generator/app generator-api
+```
+
+Run and attach interactive shell to the generator docker container to work from inside the running container:
+
+```bash
+docker run -it --rm -v $PWD:/home/generator/app generator-api /bin/bash
+```
+
 ## Running the generated project
 
 Make sure you have node version `>= 6` because this project uses native supported ES6 features.
